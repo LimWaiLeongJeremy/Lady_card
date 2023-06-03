@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
-import { Card } from "../../model/card";
+import { Injectable } from '@angular/core';
+import { Card } from "../model/card";
 
-@Component({
-  selector: 'app-deck',
-  templateUrl: './deck.component.html',
-  styleUrls: ['./deck.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class DeckComponent {
+export class DeckService {
+
 
   deck: Card[] = [
     // Spade house
@@ -102,4 +101,11 @@ export class DeckComponent {
       image: "K Spade"
     }
   ]
+
+  constructor() { }
+
+  getNewDeck() {
+    return this.deck
+  }
+
 }

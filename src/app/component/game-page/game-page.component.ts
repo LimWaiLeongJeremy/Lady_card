@@ -10,6 +10,7 @@ import { DeckService } from 'src/app/service/deck.service';
 export class GamePageComponent {
 
   playingDeck!: Card[];
+  deckQuantity!: number;
 
   constructor(private deckSrv: DeckService) {}
 
@@ -18,13 +19,16 @@ export class GamePageComponent {
     const randomCardIndex = Math.random() * this.playingDeck.length;
     const drawedCard = this.playingDeck[randomCardIndex];
     delete this.playingDeck[randomCardIndex];
+    this.deckQuantity = this.playingDeck.length;
     console.log(drawedCard);
+    console.log(this.deckQuantity);
     // return drawedCard;
 
     }
 
   newGame() {
-    throw new Error('Method not implemented.');
+    this.playingDeck = this.deckSrv.getNewDeck();
+
   }
 
 }

@@ -1,1 +1,15 @@
 <p>register works!</p>
+<div>
+  <form [formGroup]="playerForm">
+    <table>
+      <tr>
+        <td>Name: </td>
+        <td><input type="text" formControlName="name" id="name"></td>
+        <td><button>Add player</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+<div>
+  <button (click)="startGame()">Start Game</button>
+</div>

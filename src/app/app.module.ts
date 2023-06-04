@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { GamePageComponent } from './component/game-page/game-page.component';
 import { DeckService } from "./service/deck.service";
+import { RegisterComponent } from './component/register/register.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    GamePageComponent
+    GamePageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

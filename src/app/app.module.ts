@@ -1,15 +1,22 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { DeckComponent } from './component/deck/deck.component';
 import { GamePageComponent } from './component/game-page/game-page.component';
+import { DeckService } from "./service/deck.service";
+
+const routes: Routes = [
+  {
+    path: '',
+    title: 'Lady card',
+    component: GamePageComponent
+  },
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    DeckComponent,
     GamePageComponent
   ],
   imports: [
@@ -19,9 +26,12 @@ import { GamePageComponent } from './component/game-page/game-page.component';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    DeckService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

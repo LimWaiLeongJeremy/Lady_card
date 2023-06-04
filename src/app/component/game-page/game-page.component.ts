@@ -15,7 +15,11 @@ export class GamePageComponent {
 
   drawCard() {
     this.newGame()
-    const randomCard = this.playingDeck[Math.random() * this.playingDeck.length];
+    const randomCardIndex = Math.random() * this.playingDeck.length;
+    const drawedCard = this.playingDeck[randomCardIndex];
+    delete this.playingDeck[randomCardIndex];
+    console.log(drawedCard);
+    // return drawedCard;
 
     }
 

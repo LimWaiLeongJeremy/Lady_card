@@ -16,9 +16,9 @@ export class GamePageComponent {
 
   drawCard() {
     this.newGame()
-    const randomCardIndex = Math.random() * this.playingDeck.length;
+    const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
     const drawedCard = this.playingDeck[randomCardIndex];
-    delete this.playingDeck[randomCardIndex];
+    this.playingDeck.splice(randomCardIndex, 1);
     this.deckQuantity = this.playingDeck.length;
     console.log(drawedCard);
     console.log(this.deckQuantity);
@@ -26,6 +26,7 @@ export class GamePageComponent {
 
     }
 
+    
   newGame() {
     this.playingDeck = this.deckSrv.getNewDeck();
 

@@ -1,5 +1,5 @@
 export interface Player {
-  name: string;
+  playerName: string;
   ladyCard: boolean;
   toiletCard: boolean;
   madCard: boolean;

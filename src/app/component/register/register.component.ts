@@ -11,21 +11,27 @@ import { Player } from "../../model/player";
 export class RegisterComponent implements OnInit{
 
   playerForm!: FormGroup;
-  playerList!: Player[];
+  playerList: Player[] = [];
 
   constructor(private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.playerForm = this.formBuilder.group({
-      playerName: ['', Validators.required]
+      playerName: ['', Validators.required],
+      ladyCard: [false],
+      toiletCard: [false],
+      madCard: [false],
     })
-  }
-
-
+  };
 
   addPlayer(){
-    const playerName = this.playerForm.value;
-    this.playerList.push(playerName);
+    const newPlayer ={
+      playerName: this.playerForm.value.playerName,
+      ladyCard: this.playerForm.value.ladyCard,
+      toiletCard: this.playerForm.value.toiletCard,
+      madCard: this.playerForm.value.madCard
+    };
+    this.playerList.push(newPlayer);
     console.log(this.playerList);
   }
 
@@ -33,12 +39,4 @@ export class RegisterComponent implements OnInit{
     this.router.navigateByUrl('/game');
   }
 
-  private createPlayer(playerName: Player|null = null): FormGroup {
-    return this.formBuilder.group({
-      playerName: this.formBuilder.control(playerName?.playerName? playerName.playerName: '', [Validators.required]),
-      ladyCard: false,
-      toiletCard: false,
-      madCard: false
-    })
-  }
 }

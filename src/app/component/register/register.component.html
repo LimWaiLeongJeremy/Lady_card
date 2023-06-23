@@ -1,4 +1,4 @@
-<p>register works!</p>
+<h1>Please register player</h1>
 <div>
   <form [formGroup]="playerForm">
     <table>
@@ -19,5 +19,11 @@
     </table>
   </form>
 </div>
-<div>
+<div *ngIf="playerList.length > 0">
+  <h4>Players added:</h4>
+<ul>
+  <li *ngFor="let player of playerList">
+    {{ player.playerName }}
+  </li>
+</ul>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Player } from "../../model/player";
+import { RegisterServiceService } from 'src/app/service/register-service.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,10 @@ export class RegisterComponent implements OnInit{
   playerForm!: FormGroup;
   playerList: Player[] = [];
 
-  constructor(private router: Router, private formBuilder: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private regSvc: RegisterServiceService) {}
 
   ngOnInit() {
     this.playerForm = this.formBuilder.group({
@@ -36,6 +40,7 @@ export class RegisterComponent implements OnInit{
   }
 
   startGame() {
+    this.regSvc.passPlayerList
     this.router.navigateByUrl('/game');
   }
 

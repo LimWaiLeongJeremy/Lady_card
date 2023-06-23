@@ -6,12 +6,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class RegisterServiceService {
 
-  private paramSource = new BehaviorSubject(null);
-  sharedParam = this.paramSource.asObservable();
+  passPlayerList: BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  // private paramSource = new BehaviorSubject(null);
+  // sharedParam = this.paramSource.asObservable();
 
   constructor() { }
 
-  changeParam(param: any[]) {
-    this.paramSource.next(param)
+  storePlayerList(playerList: any) {
+    this.passPlayerList.next(playerList)
+  }
+
+  getPlayerList() {
+    return this.passPlayerList
   }
 }

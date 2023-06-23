@@ -13,7 +13,7 @@
         <tr>
           <td></td>
           <td>
-            <button (click)="startGame()">Start Game</button>
+            <button [disabled]="!playerList || playerList.length === 0" (click)="startGame()">Start Game</button>
           </td>
         </tr>
     </table>

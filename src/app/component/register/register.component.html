@@ -24,6 +24,7 @@
 <ul>
   <li *ngFor="let player of playerList">
     {{ player.playerName }}
+    <button type="button" (click)="removePlayer(player.playerName)">X</button>
   </li>
 </ul>
 </div>

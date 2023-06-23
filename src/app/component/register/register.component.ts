@@ -35,12 +35,24 @@ export class RegisterComponent implements OnInit{
       toiletCard: this.playerForm.value.toiletCard,
       madCard: this.playerForm.value.madCard
     };
+
     this.playerList.push(newPlayer);
     console.log(this.playerList);
   }
 
+  removePlayer(playerName: string) {
+    // for (let index = 0; index < array.length; index++) {
+    //   const element = array[index];
+    this.playerList.forEach((player, index) => {
+      if ( player.playerName === playerName ) {
+        this.playerList.splice(index, 1);
+      }
+    })
+    console.log(this.playerList)
+  }
+
   startGame() {
-    this.regSvc.passPlayerList
+    this.regSvc.storePlayerList(this.playerList)
     this.router.navigateByUrl('/game');
   }
 

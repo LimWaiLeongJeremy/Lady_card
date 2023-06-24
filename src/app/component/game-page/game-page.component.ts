@@ -25,19 +25,22 @@ export class GamePageComponent implements OnInit{
       this.playerList = passPlayerList;
       console.log(JSON.stringify(this.playerList));
     })
+    this.newGame()
   }
 
   drawCard() {
-    this.newGame()
-    const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
-    const drawedCard = this.playingDeck[randomCardIndex];
-    this.playingDeck.splice(randomCardIndex, 1);
-    this.deckQuantity = this.playingDeck.length;
-    console.log(drawedCard);
-    console.log(this.deckQuantity);
-    // return drawedCard;
-
+    if (this.playingDeck.length != 0) {
+      const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
+      const drawedCard = this.playingDeck[randomCardIndex];
+      this.playingDeck.splice(randomCardIndex, 1);
+      this.deckQuantity = this.playingDeck.length;
+      console.log(drawedCard);
+      console.log(this.deckQuantity, ' cards till deck empty');
+      // return drawedCard;
+    } else {
+      console.log("Deck is empty.")
     }
+  }
 
 
   newGame() {

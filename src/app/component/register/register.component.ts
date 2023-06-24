@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit{
     const isDuplicate = this.playerList.some(player => player.playerName === newPlayer.playerName)
     if (isDuplicate) {
       console.log("Player already in game")
+      // TODO: return a msg
     } else {
       this.playerList.push(newPlayer);
       console.log(this.playerList)

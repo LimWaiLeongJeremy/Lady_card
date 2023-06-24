@@ -11,14 +11,18 @@ import { DeckService } from 'src/app/service/deck.service';
 export class GamePageComponent implements OnInit{
 
   playingDeck!: Card[];
+  currentCard!: Card;
   deckQuantity!: number;
-  playerList: any;
+  playerList: Player[] = [];
 
   constructor(
     private deckSrv: DeckService,
     ) {}
 
   ngOnInit(): void {
+    const player = sessionStorage.getItem("players");
+    const newPlayer: Player[] = JSON.parse(player || '[]');
+    this.playerList = newPlayer;
     this.newGame()
   }
 
@@ -26,6 +30,7 @@ export class GamePageComponent implements OnInit{
     if (this.playingDeck.length != 0) {
       const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
       const drawedCard = this.playingDeck[randomCardIndex];
+      this.currentCard = drawedCard;
       this.playingDeck.splice(randomCardIndex, 1);
       this.deckQuantity = this.playingDeck.length;
       console.log(drawedCard);

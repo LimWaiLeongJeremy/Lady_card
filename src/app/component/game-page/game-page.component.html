@@ -1,5 +1,14 @@
 <p>game-page works!</p>
 <div>
+  <h1>
+    {{currentCard.characters}} of {{currentCard.house}}
+  </h1>
+  <h2>
+    {{currentCard.effect}}
+  </h2>
+  <h4>{{currentCard.description}}</h4>
+</div>
+<div>
   <button (click)="drawCard()">Draw</button>
-  <button (click)="newGame()">Reset</button>
+  <button onclick="window.location.reload()">Reset</button>
 </div>

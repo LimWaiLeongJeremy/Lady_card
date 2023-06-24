@@ -7,7 +7,7 @@ import { GamePageComponent } from './component/game-page/game-page.component';
 import { DeckService } from "./service/deck.service";
 import { RegisterComponent } from './component/register/register.component';
 import { ReactiveFormsModule } from "@angular/forms";
-import { RegisterServiceService } from './service/register-service.service';
+
 
 const routes: Routes = [
   {
@@ -41,7 +41,6 @@ const routes: Routes = [
   ],
   providers: [
     DeckService,
-    RegisterServiceService
   ],
   bootstrap: [AppComponent]
 })

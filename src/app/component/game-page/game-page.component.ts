@@ -12,13 +12,16 @@ export class GamePageComponent implements OnInit{
 
   playingDeck!: Card[];
   deckQuantity!: number;
-  playerList: any;
+  playerList: Player[] = [];
 
   constructor(
     private deckSrv: DeckService,
     ) {}
 
   ngOnInit(): void {
+    const player = sessionStorage.getItem("players");
+    const newPlayer: Player[] = JSON.parse(player || '[]');
+    this.playerList = newPlayer;
     this.newGame()
   }
 

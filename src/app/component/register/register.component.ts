@@ -58,7 +58,8 @@ export class RegisterComponent implements OnInit{
   }
 
   startGame() {
-    this.regSvc.storePlayerList(this.playerList)
+    sessionStorage.setItem("players", JSON.stringify(this.playerList));
+    this.regSvc.storePlayerList(this.playerList);
     this.router.navigateByUrl('/game');
   }
 

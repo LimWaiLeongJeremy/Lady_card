@@ -8,12 +8,12 @@
             type="text"
             formControlName="playerName"
             id="playerName"></td>
-          <td><button (click)="addPlayer()">Add player</button></td>
+          <td><input type="reset" (click)="addPlayer()" value="Add player"></td>
         </tr>
         <tr>
           <td></td>
           <td>
-            <button (click)="startGame()">Start Game</button>
+            <button [disabled]="!playerList || playerList.length === 0" (click)="startGame()">Start Game</button>
           </td>
         </tr>
     </table>
@@ -24,6 +24,7 @@
 <ul>
   <li *ngFor="let player of playerList">
     {{ player.playerName }}
+    <button type="button" (click)="removePlayer(player.playerName)">X</button>
   </li>
 </ul>
 </div>

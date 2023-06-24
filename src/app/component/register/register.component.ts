@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Player } from "../../model/player";
 import { RegisterServiceService } from 'src/app/service/register-service.service';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -36,13 +37,16 @@ export class RegisterComponent implements OnInit{
       madCard: this.playerForm.value.madCard
     };
 
-    this.playerList.push(newPlayer);
-    console.log(this.playerList);
+    const isDuplicate = this.playerList.some(player => player.playerName === newPlayer.playerName)
+    if (isDuplicate) {
+      console.log("Player already in game")
+    } else {
+      this.playerList.push(newPlayer);
+      console.log(this.playerList)
+    }
   }
 
   removePlayer(playerName: string) {
-    // for (let index = 0; index < array.length; index++) {
-    //   const element = array[index];
     this.playerList.forEach((player, index) => {
       if ( player.playerName === playerName ) {
         this.playerList.splice(index, 1);

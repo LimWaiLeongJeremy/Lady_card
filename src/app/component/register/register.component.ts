@@ -30,6 +30,7 @@ export class RegisterComponent implements OnInit{
   };
 
   addPlayer(){
+    // TODO: Title cap the player name.
     const newPlayer ={
       playerName: this.playerForm.value.playerName,
       ladyCard: this.playerForm.value.ladyCard,

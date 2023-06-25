@@ -53,16 +53,20 @@ export class GamePageComponent implements OnInit{
   }
 
   private nextTurn() {
-    if (this.turnCounter > this.playerList.length) {
-      this.turnCounter = 0;
-      console.log('Turn counter reet to 0');
-    } else {
+    if (this.turnCounter < this.playerList.length) {
       console.log(this.turnCounter);
       const currentPlayer = this.playerList[this.turnCounter];
       console.log('Current player', currentPlayer);
       this.turnCounter += 1;
       console.log(this.turnCounter);
-
+    } else {
+      this.turnCounter = 0;
+      console.log('Turn counter reset to 0');
+      console.log(this.turnCounter);
+      const currentPlayer = this.playerList[this.turnCounter];
+      console.log('Current player', currentPlayer);
+      this.turnCounter += 1;
+      console.log(this.turnCounter);
     }
 
   }

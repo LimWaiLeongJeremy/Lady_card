@@ -14,6 +14,7 @@ export class GamePageComponent implements OnInit{
   currentCard!: Card;
   deckQuantity!: number;
   playerList: Player[] = [];
+  turnCounter: number = 0;
 
   constructor(
     private deckSrv: DeckService,
@@ -28,23 +29,45 @@ export class GamePageComponent implements OnInit{
 
   drawCard() {
     if (this.playingDeck.length != 0) {
-      const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
-      const drawedCard = this.playingDeck[randomCardIndex];
-      this.currentCard = drawedCard;
-      this.playingDeck.splice(randomCardIndex, 1);
-      this.deckQuantity = this.playingDeck.length;
-      console.log(drawedCard);
-      console.log(this.deckQuantity, ' cards till deck empty');
+      this.nextTurn();
+      this.randomCard();
       // return drawedCard;
     } else {
-      console.log("Deck is empty.")
+      console.log("Deck is empty.");
     }
   }
 
 
-  newGame() {
+  private newGame() {
     this.playingDeck = this.deckSrv.getNewDeck();
 
   }
 
+  private randomCard() {
+    const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
+    const drawedCard = this.playingDeck[randomCardIndex];
+    this.currentCard = drawedCard;
+    this.playingDeck.splice(randomCardIndex, 1);
+    this.deckQuantity = this.playingDeck.length;
+    console.log(this.deckQuantity, ' cards till deck empty');
+  }
+
+  private nextTurn() {
+    if (this.turnCounter < this.playerList.length) {
+      console.log(this.turnCounter);
+      const currentPlayer = this.playerList[this.turnCounter];
+      console.log('Current player', currentPlayer);
+      this.turnCounter += 1;
+      console.log(this.turnCounter);
+    } else {
+      this.turnCounter = 0;
+      console.log('Turn counter reset to 0');
+      console.log(this.turnCounter);
+      const currentPlayer = this.playerList[this.turnCounter];
+      console.log('Current player', currentPlayer);
+      this.turnCounter += 1;
+      console.log(this.turnCounter);
+    }
+
+  }
 }

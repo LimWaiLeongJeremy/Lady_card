@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { findIndex } from 'rxjs';
 import { Card } from 'src/app/model/card';
 import { Player } from 'src/app/model/player';
 import { DeckService } from 'src/app/service/deck.service';
@@ -25,7 +26,14 @@ export class GamePageComponent implements OnInit{
     const player = sessionStorage.getItem("players");
     const newPlayer: Player[] = JSON.parse(player || '[]');
     this.playerList = newPlayer;
-    this.newGame()
+
+    const oldDeck: Card[] = JSON.parse(sessionStorage.getItem('playingDeck') || '[]');
+    // const oldCard: Card = JSON.parse(sessionStorage.getItem('currentCard') || '');
+    if (oldDeck.) {
+      this.newGame()
+    } else {
+      this.playingDeck = oldDeck;
+    }
   }
 
   refresh(): void {
@@ -35,6 +43,9 @@ export class GamePageComponent implements OnInit{
       player.toiletCard = false;
       player.madCard = false;
     })
+    sessionStorage.setItem('players', JSON.stringify(this.playerList));
+    sessionStorage.removeItem('playingDeck');
+    sessionStorage.removeItem('currentCard');
   }
 
   drawCard() {
@@ -59,6 +70,8 @@ export class GamePageComponent implements OnInit{
     const drawedCard = this.playingDeck[randomCardIndex];
     this.currentCard = drawedCard;
     this.playingDeck.splice(randomCardIndex, 1);
+    sessionStorage.setItem('playingDeck', JSON.stringify(this.playingDeck));
+    sessionStorage.setItem('currentCard', JSON.stringify(this.currentCard));
     this.deckQuantity = this.playingDeck.length;
     console.log(this.deckQuantity, ' cards till deck empty');
   }
@@ -85,12 +98,15 @@ export class GamePageComponent implements OnInit{
     switch (cardNumber) {
       case '2':
         this.playerList[this.turnCounter - 1].ladyCard = true;
+        sessionStorage.setItem('players', JSON.stringify(this.playerList));
         break;
       case '8':
         this.playerList[this.turnCounter - 1].toiletCard = true;
+        sessionStorage.setItem('players', JSON.stringify(this.playerList));
         break;
       case '10':
         this.playerList[this.turnCounter - 1].madCard = true;
+        sessionStorage.setItem('players', JSON.stringify(this.playerList));
         break;
     }
   }

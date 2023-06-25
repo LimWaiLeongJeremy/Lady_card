@@ -21,9 +21,6 @@ export class RegisterComponent implements OnInit{
   ngOnInit() {
     this.playerForm = this.formBuilder.group({
       playerName: ['', Validators.required],
-      ladyCard: [false],
-      toiletCard: [false],
-      madCard: [false],
     })
   };
 
@@ -31,9 +28,9 @@ export class RegisterComponent implements OnInit{
     // TODO: Title cap the player name.
     const newPlayer ={
       playerName: this.playerForm.value.playerName,
-      ladyCard: this.playerForm.value.ladyCard,
-      toiletCard: this.playerForm.value.toiletCard,
-      madCard: this.playerForm.value.madCard
+      ladyCard: false,
+      toiletCard: false,
+      madCard: false
     };
 
     const isDuplicate = this.playerList.some(player => player.playerName === newPlayer.playerName)

@@ -16,6 +16,7 @@ export class GamePageComponent implements OnInit{
   playerList: Player[] = [];
   turnCounter: number = 0;
 
+
   constructor(
     private deckSrv: DeckService,
     ) {}
@@ -31,6 +32,7 @@ export class GamePageComponent implements OnInit{
     if (this.playingDeck.length != 0) {
       this.nextTurn();
       this.randomCard();
+      this.assignFlag(this.currentCard.characters);
       // return drawedCard;
     } else {
       console.log("Deck is empty.");
@@ -68,6 +70,19 @@ export class GamePageComponent implements OnInit{
       this.turnCounter += 1;
       console.log(this.turnCounter);
     }
+  }
 
+  private assignFlag(cardNumber: string){
+    switch (cardNumber) {
+      case '2':
+        this.playerList[this.turnCounter - 1].ladyCard = true;
+        break;
+      case '8':
+        this.playerList[this.turnCounter - 1].toiletCard = true;
+        break;
+      case '10':
+        this.playerList[this.turnCounter - 1].madCard = true;
+        break;
+    }
   }
 }

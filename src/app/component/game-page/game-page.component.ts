@@ -30,13 +30,7 @@ export class GamePageComponent implements OnInit{
   drawCard() {
     if (this.playingDeck.length != 0) {
       this.nextTurn();
-      const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
-      const drawedCard = this.playingDeck[randomCardIndex];
-      this.currentCard = drawedCard;
-      this.playingDeck.splice(randomCardIndex, 1);
-      this.deckQuantity = this.playingDeck.length;
-      console.log(drawedCard);
-      console.log(this.deckQuantity, ' cards till deck empty');
+      this.randomCard();
       // return drawedCard;
     } else {
       console.log("Deck is empty.");
@@ -47,6 +41,15 @@ export class GamePageComponent implements OnInit{
   private newGame() {
     this.playingDeck = this.deckSrv.getNewDeck();
 
+  }
+
+  private randomCard() {
+    const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
+    const drawedCard = this.playingDeck[randomCardIndex];
+    this.currentCard = drawedCard;
+    this.playingDeck.splice(randomCardIndex, 1);
+    this.deckQuantity = this.playingDeck.length;
+    console.log(this.deckQuantity, ' cards till deck empty');
   }
 
   private nextTurn() {

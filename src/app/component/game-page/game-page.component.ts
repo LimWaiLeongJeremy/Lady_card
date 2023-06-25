@@ -14,6 +14,7 @@ export class GamePageComponent implements OnInit{
   currentCard!: Card;
   deckQuantity!: number;
   playerList: Player[] = [];
+  turnCounter: number = 0;
 
   constructor(
     private deckSrv: DeckService,
@@ -28,6 +29,7 @@ export class GamePageComponent implements OnInit{
 
   drawCard() {
     if (this.playingDeck.length != 0) {
+      this.nextTurn();
       const randomCardIndex = Math.floor(Math.random() * this.playingDeck.length);
       const drawedCard = this.playingDeck[randomCardIndex];
       this.currentCard = drawedCard;
@@ -37,14 +39,28 @@ export class GamePageComponent implements OnInit{
       console.log(this.deckQuantity, ' cards till deck empty');
       // return drawedCard;
     } else {
-      console.log("Deck is empty.")
+      console.log("Deck is empty.");
     }
   }
 
 
-  newGame() {
+  private newGame() {
     this.playingDeck = this.deckSrv.getNewDeck();
 
   }
 
+  private nextTurn() {
+    if (this.turnCounter > this.playerList.length) {
+      this.turnCounter = 0;
+      console.log('Turn counter reet to 0');
+    } else {
+      console.log(this.turnCounter);
+      const currentPlayer = this.playerList[this.turnCounter];
+      console.log('Current player', currentPlayer);
+      this.turnCounter += 1;
+      console.log(this.turnCounter);
+
+    }
+
+  }
 }

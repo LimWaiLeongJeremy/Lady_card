@@ -28,6 +28,15 @@ export class GamePageComponent implements OnInit{
     this.newGame()
   }
 
+  refresh(): void {
+    window.location.reload();
+    this.playerList.forEach((player) => {
+      player.ladyCard = false;
+      player.toiletCard = false;
+      player.madCard = false;
+    })
+  }
+
   drawCard() {
     if (this.playingDeck.length != 0) {
       this.nextTurn();

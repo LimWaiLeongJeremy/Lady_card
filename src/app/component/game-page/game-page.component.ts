@@ -33,6 +33,7 @@ export class GamePageComponent implements OnInit{
       this.newGame()
     } else {
       this.playingDeck = oldDeck;
+      this.currentCard = JSON.parse(sessionStorage.getItem('currentCard') || '')
     }
   }
 

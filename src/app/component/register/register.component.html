@@ -1,30 +1,31 @@
-<h1>Please register player</h1>
-<div>
-  <form [formGroup]="playerForm">
-    <table>
-        <tr>
-          <td>Name: </td>
-          <td><input
-            type="text"
-            formControlName="playerName"
-            id="playerName"></td>
-          <td><input type="reset" (click)="addPlayer()" value="Add player"></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <button [disabled]="!playerList || playerList.length === 0" (click)="startGame()">Start Game</button>
-          </td>
-        </tr>
-    </table>
-  </form>
-</div>
-<div *ngIf="playerList.length > 0">
-  <h4>Players added:</h4>
-<ul>
-  <li *ngFor="let player of playerList">
-    {{ player.playerName }}
-    <button type="button" (click)="removePlayer(player.playerName)">X</button>
-  </li>
-</ul>
-</div>
+<body class="center">
+  <div>
+    <form [formGroup]="playerForm">
+      <table>
+          <tr>
+            <td>Name: </td>
+            <td><input
+              type="text"
+              formControlName="playerName"
+              id="playerName"></td>
+            <td><input type="reset" (click)="addPlayer()" value="Add player"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <button [disabled]="!playerList || playerList.length === 0" (click)="startGame()">Start Game</button>
+            </td>
+          </tr>
+      </table>
+    </form>
+  </div>
+  <div *ngIf="playerList.length > 0">
+    <h4>Players added:</h4>
+  <ul>
+    <li *ngFor="let player of playerList">
+      {{ player.playerName }}
+      <button type="button" (click)="removePlayer(player.playerName)">X</button>
+    </li>
+  </ul>
+  </div>
+</body>

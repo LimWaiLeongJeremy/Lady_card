@@ -28,7 +28,6 @@ export class GamePageComponent implements OnInit{
     this.playerList = newPlayer;
 
     const oldDeck: Card[] = JSON.parse(sessionStorage.getItem('playingDeck') || '[]');
-    // const oldCard: Card = JSON.parse(sessionStorage.getItem('currentCard') || '');
     if (!oldDeck[0]) {
       this.newGame()
     } else {
